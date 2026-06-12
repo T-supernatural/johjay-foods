@@ -1,11 +1,30 @@
 import { motion } from 'framer-motion'
 import Container from './Container.jsx'
 
-const PageHero = ({ title, subtitle, breadcrumb, eyebrow, align = 'center' }) => {
+const PageHero = ({
+  title,
+  subtitle,
+  breadcrumb,
+  eyebrow,
+  align = 'center',
+  backgroundImage,
+  backgroundAlt = '',
+  backgroundPosition = 'center center',
+}) => {
   return (
-    <section className="relative overflow-hidden border-b border-jj-orange/10 bg-jj-black text-white">
+    <section className="relative overflow-hidden border-b border-jj-orange/10 bg-[linear-gradient(180deg,#0a0a0a_0%,#111111_100%)] text-white">
       <div className="jj-noise absolute inset-0" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(232,101,26,0.2)_0%,transparent_65%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.92)_100%)]" />
+      {backgroundImage && (
+        <img
+          src={backgroundImage}
+          alt={backgroundAlt}
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: backgroundPosition }}
+        />
+      )}
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.92)_100%)]" />
       <div className="absolute inset-0 jj-hero-grid opacity-40" />
 
       <Container className="relative z-10 py-20 md:py-28">
@@ -25,7 +44,7 @@ const PageHero = ({ title, subtitle, breadcrumb, eyebrow, align = 'center' }) =>
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
-            className="font-display text-4xl leading-none text-white sm:text-5xl md:text-6xl"
+            className="font-display text-[clamp(2.8rem,5vw,5rem)] leading-none text-white"
           >
             {title}
           </motion.h1>
