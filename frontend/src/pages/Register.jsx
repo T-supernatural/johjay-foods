@@ -7,6 +7,7 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import { useAuth } from '../context/useAuth.js';
 import { getApiErrorMessage } from '../api/errorUtils.js';
+import PageHero from '../components/PageHero.jsx';
 
 const Register = () => {
   const { register } = useAuth();
@@ -51,22 +52,29 @@ const Register = () => {
 
   return (
     <div className="flex flex-col w-full">
-      <Section background="cream" className="min-h-[70vh] flex items-center">
+      <PageHero
+        eyebrow="Account"
+        title="Create Account"
+        subtitle="Register to track and manage event bookings."
+        breadcrumb={[{ label: 'Home' }, { label: 'Register' }]}
+      />
+
+      <Section background="dark" className="flex min-h-[70vh] items-center" spacing="lg">
         <Container size="sm">
-          <Card padding="lg" className="flex flex-col gap-6 max-w-md mx-auto">
+          <Card padding="lg" className="mx-auto flex max-w-md flex-col gap-6 p-8">
             <div className="text-center flex flex-col gap-2">
-              <h1 className="text-3xl font-bold text-primary-800">Create Account</h1>
-              <p className="text-sm text-primary-800/60 font-sans">Register to track and manage event bookings.</p>
+              <h1 className="font-display text-4xl text-white">Create Account</h1>
+              <p className="text-sm leading-7 text-jj-muted">Register to track and manage event bookings.</p>
             </div>
 
             {error && (
-              <div className="bg-red-50 border border-red-200 text-red-600 p-3 rounded-lg text-xs font-sans">
+              <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-3 text-xs text-red-200">
                 {error}
               </div>
             )}
 
             {successMessage && (
-              <div className="bg-primary-50 border border-primary-200 text-primary-800 p-3 rounded-lg text-xs font-sans">
+              <div className="rounded-2xl border border-jj-orange/20 bg-jj-orange/10 p-3 text-xs text-white">
                 {successMessage}
               </div>
             )}
@@ -112,7 +120,7 @@ const Register = () => {
 
             <div className="border-t border-cream-200 pt-4 text-center font-sans text-xs text-primary-800/60">
               Already have an account?{' '}
-              <Link to="/login" className="font-semibold text-gold-600 hover:text-gold-700">
+              <Link to="/login" className="font-semibold text-jj-orange hover:text-white">
                 Login here
               </Link>
             </div>

@@ -8,6 +8,7 @@ import Button from '../components/Button';
 import { Link } from 'react-router-dom';
 import { submitContactMessage } from '../api/contactService.js';
 import { getApiErrorMessage } from '../api/errorUtils.js';
+import PageHero from '../components/PageHero.jsx';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -52,32 +53,32 @@ const Contact = () => {
 
   return (
     <div className="flex flex-col w-full">
-      {/* Page Header */}
-      <Section background="primary" spacing="sm" className="text-center">
-        <Container className="flex flex-col gap-4">
-          <h1 className="text-3xl md:text-5xl font-bold">Contact Us</h1>
-          <p className="text-cream-100/80 font-sans max-w-xl mx-auto">
-            Get in touch with us for general inquiries, career opportunities, or corporate partnerships.
-          </p>
-        </Container>
-      </Section>
+      <PageHero
+        eyebrow="Contact"
+        title="Contact Us"
+        subtitle="Get in touch with us for general inquiries, career opportunities, or corporate partnerships."
+        breadcrumb={[{ label: 'Home' }, { label: 'Contact' }]}
+      />
 
       {/* Contact Form & Sidebar */}
-      <Section background="white">
-        <Container className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <Section background="white" spacing="lg">
+        <Container className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           {/* Form */}
           <div className="lg:col-span-2">
-            <Card padding="lg" hoverable={false} className="flex flex-col gap-6">
-              <h2 className="text-2xl font-bold text-primary-700">Send a Message</h2>
+            <Card padding="lg" hoverable={false} className="flex flex-col gap-6 p-8">
+              <div className="jj-section-heading mx-0 items-start text-left">
+                <span className="jj-label text-[0.62rem] text-jj-gold">Send a Message</span>
+                <h2 className="font-display text-3xl text-white">Send a Message</h2>
+              </div>
               {formError && (
-                <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+                <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-200">
                   {formError}
                 </div>
               )}
               {submitted ? (
-                <div className="bg-primary-50 border border-primary-200 text-primary-800 p-6 rounded-lg text-center font-sans">
-                  <h3 className="font-bold text-lg mb-2">Thank you!</h3>
-                  <p className="text-sm">Your contact message has been sent successfully. Our team will get back to you shortly.</p>
+                <div className="rounded-2xl border border-jj-orange/15 bg-jj-black/60 p-6 text-center">
+                  <h3 className="font-heading text-2xl text-white mb-2">Thank you!</h3>
+                  <p className="text-sm leading-7 text-jj-muted">Your contact message has been sent successfully. Our team will get back to you shortly.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -135,29 +136,29 @@ const Contact = () => {
 
           {/* Sidebar */}
           <div className="flex flex-col gap-6">
-            <Card padding="md" hoverable={false} className="flex flex-col gap-4">
-              <h3 className="text-lg font-bold text-primary-700">Office Address</h3>
-              <p className="text-sm text-primary-800/80 font-sans leading-relaxed">
+            <Card padding="md" hoverable={false} className="flex flex-col gap-4 p-6">
+              <h3 className="font-heading text-xl text-white">Office Address</h3>
+              <p className="text-sm leading-7 text-jj-muted">
                 Johjay Foods Catering HQ<br />
                 12 Culinary Avenue, Suite 100<br />
                 Lagos, Nigeria
               </p>
             </Card>
 
-            <Card padding="md" hoverable={false} className="flex flex-col gap-4">
-              <h3 className="text-lg font-bold text-primary-700">Call or Email</h3>
-              <p className="text-sm text-primary-800/80 font-sans leading-relaxed">
+            <Card padding="md" hoverable={false} className="flex flex-col gap-4 p-6">
+              <h3 className="font-heading text-xl text-white">Call or Email</h3>
+              <p className="text-sm leading-7 text-jj-muted">
                 <strong>General:</strong> info@johjayfoods.com<br />
                 <strong>Phone:</strong> +234 123 456 7890
               </p>
             </Card>
 
-            <Card padding="md" hoverable={false} className="flex flex-col gap-4">
-              <h3 className="text-lg font-bold text-primary-700">Catering Inquiry</h3>
-              <p className="text-xs text-primary-800/60 font-sans mb-2">
+            <Card padding="md" hoverable={false} className="flex flex-col gap-4 p-6">
+              <h3 className="font-heading text-xl text-white">Catering Inquiry</h3>
+              <p className="mb-2 text-xs leading-6 text-jj-muted">
                 For detailed wedding, corporate event, or holiday party quotes, please use our dedicated form.
               </p>
-              <Link to="/request-quote" className="text-xs font-bold text-gold-600 hover:text-gold-700 uppercase tracking-wider font-sans">
+              <Link to="/request-quote" className="jj-label text-[0.6rem] font-bold text-jj-orange hover:text-white">
                 Go to Quote Form →
               </Link>
             </Card>

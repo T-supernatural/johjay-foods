@@ -13,7 +13,7 @@ const Textarea = ({
   return (
     <div className={`flex flex-col gap-1.5 w-full ${className}`}>
       {label && (
-        <label htmlFor={id} className="text-xs font-semibold uppercase tracking-wider text-primary-700">
+        <label htmlFor={id} className="jj-label text-[0.66rem] font-semibold text-jj-muted">
           {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}
@@ -24,11 +24,11 @@ const Textarea = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={`w-full px-4 py-3 border rounded-lg text-sm transition-colors duration-200 outline-none resize-y
+        className={`w-full resize-y rounded-2xl border bg-jj-card px-4 py-3 text-sm text-white outline-none transition-all duration-300 placeholder:text-[#666666] focus:ring-2 focus:ring-jj-orange/20
           ${error 
-            ? 'border-red-400 focus:border-red-500 focus:ring-1 focus:ring-red-500' 
-            : 'border-cream-200 focus:border-primary-500 focus:ring-1 focus:ring-primary-500'
-          } bg-white text-primary-800 placeholder-primary-800/40`}
+            ? 'border-red-400/80 focus:border-red-400' 
+            : 'border-white/10 focus:border-jj-orange'
+          }`}
         {...props}
       />
       {error && (

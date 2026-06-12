@@ -4,6 +4,7 @@ import Container from '../components/Container';
 import Card from '../components/Card';
 import { fetchGalleryItems } from '../api/galleryService.js';
 import { getApiErrorMessage } from '../api/errorUtils.js';
+import PageHero from '../components/PageHero.jsx';
 
 const Gallery = () => {
   const categories = [
@@ -55,29 +56,26 @@ const Gallery = () => {
 
   return (
     <div className="flex flex-col w-full">
-      {/* Page Header */}
-      <Section background="primary" spacing="sm" className="text-center">
-        <Container className="flex flex-col gap-4">
-          <h1 className="text-3xl md:text-5xl font-bold">Visual Gallery</h1>
-          <p className="text-cream-100/80 font-sans max-w-xl mx-auto">
-            Browse through our portfolio of past catering setups, plated cuisines, and decorated tables.
-          </p>
-        </Container>
-      </Section>
+      <PageHero
+        eyebrow="Gallery"
+        title="Visual Gallery"
+        subtitle="Browse through our portfolio of past catering setups, plated cuisines, and decorated tables."
+        breadcrumb={[{ label: 'Home' }, { label: 'Gallery' }]}
+      />
 
       {/* Filter Tabs & Gallery Grid */}
-      <Section background="white">
+      <Section background="white" spacing="lg">
         <Container className="flex flex-col gap-8">
           {/* Tabs */}
-          <div className="flex flex-wrap gap-2 justify-center border-b border-cream-200 pb-4">
+          <div className="flex flex-wrap justify-center gap-2 border-b border-white/10 pb-4">
             {categories.map((tab) => (
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 cursor-pointer
-                  ${activeTab === tab.key 
-                    ? 'bg-primary-500 text-cream-50' 
-                    : 'text-primary-700 hover:bg-cream-100'
+                className={`jj-label cursor-pointer rounded-full border px-4 py-2 text-[0.62rem] transition-all duration-200
+                  ${activeTab === tab.key
+                    ? 'border-jj-orange bg-jj-orange text-black shadow-[0_0_20px_rgba(232,101,26,0.24)]'
+                    : 'border-white/10 bg-white/5 text-white/70 hover:border-jj-orange/30 hover:text-white'
                   }`}
               >
                 {tab.label}
@@ -87,13 +85,13 @@ const Gallery = () => {
 
           {/* Grid */}
           {isLoading ? (
-            <div className="py-16 text-center text-sm text-primary-800/70">Loading gallery...</div>
+            <div className="jj-shimmer rounded-2xl py-16 text-center text-sm text-white/70">Loading gallery...</div>
           ) : error ? (
-            <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-center text-sm text-red-700">
+            <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-6 text-center text-sm text-red-200">
               {error}
             </div>
           ) : filteredItems.length === 0 ? (
-            <div className="rounded-2xl border border-cream-200 bg-cream-50 p-6 text-center text-sm text-primary-800/70">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-center text-sm text-white/70">
               No gallery items are available yet.
             </div>
           ) : (
@@ -104,17 +102,17 @@ const Gallery = () => {
                     {item.image ? (
                       <img src={item.image} alt={item.title} className="h-full w-full object-cover" />
                     ) : (
-                      <div className="text-primary-800/40 text-center p-4">
-                        <p className="font-serif italic text-sm">Image unavailable</p>
+                      <div className="text-center p-4 text-white/40">
+                        <p className="font-heading italic text-sm">Image unavailable</p>
                       </div>
                     )}
-                    <span className="text-xs uppercase font-bold tracking-widest text-primary-700 bg-cream-100 border border-cream-200 px-3 py-1 rounded-full absolute top-4 left-4">
+                    <span className="jj-label absolute left-4 top-4 rounded-full border border-jj-orange/20 bg-jj-black/70 px-3 py-1 text-[0.55rem] text-jj-orange backdrop-blur">
                       {item.category}
                     </span>
                   </div>
                   <div className="p-6 flex flex-col gap-2">
-                    <h3 className="text-lg font-bold text-primary-800">{item.title}</h3>
-                    <p className="text-primary-800/70 text-xs font-sans">{item.description || 'No description provided.'}</p>
+                    <h3 className="font-heading text-2xl text-white">{item.title}</h3>
+                    <p className="text-xs leading-7 text-jj-muted">{item.description || 'No description provided.'}</p>
                   </div>
                 </Card>
               ))}

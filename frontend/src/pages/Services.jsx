@@ -3,6 +3,7 @@ import Container from '../components/Container';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
+import PageHero from '../components/PageHero.jsx';
 
 const Services = () => {
   const serviceList = [
@@ -30,32 +31,32 @@ const Services = () => {
 
   return (
     <div className="flex flex-col w-full">
-      {/* Page Header */}
-      <Section background="primary" spacing="sm" className="text-center">
-        <Container className="flex flex-col gap-4">
-          <h1 className="text-3xl md:text-5xl font-bold">Catering Services</h1>
-          <p className="text-cream-100/80 font-sans max-w-xl mx-auto">
-            Discover our tailored service offerings designed to elevate your event, from formal plated dinners to interactive live kitchens.
-          </p>
-        </Container>
-      </Section>
+      <PageHero
+        eyebrow="Services"
+        title="Catering Services"
+        subtitle="Discover our tailored service offerings designed to elevate your event, from formal plated dinners to interactive live kitchens."
+        breadcrumb={[{ label: 'Home' }, { label: 'Services' }]}
+      />
 
       {/* Services List */}
-      <Section background="white">
+      <Section background="white" spacing="lg">
         <Container className="flex flex-col gap-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             {serviceList.map((service, index) => (
-              <Card key={index} className="flex flex-col justify-between gap-6" padding="lg">
+              <Card key={index} className="flex flex-col justify-between gap-6 p-8" padding="none">
                 <div className="flex flex-col gap-4">
-                  <h2 className="text-2xl font-bold text-primary-700">{service.title}</h2>
-                  <p className="text-primary-800/80 font-sans text-sm leading-relaxed">{service.description}</p>
+                  <div className="flex items-center justify-between gap-4">
+                    <h2 className="font-heading text-2xl text-white">{service.title}</h2>
+                    <span className="jj-label text-[0.58rem] text-jj-orange">Service</span>
+                  </div>
+                  <p className="text-sm leading-8 text-jj-muted">{service.description}</p>
                   
-                  <div className="border-t border-cream-200 pt-4 mt-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-gold-600 block mb-3">Service Inclusions:</span>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-sans text-primary-800/75">
+                  <div className="mt-2 border-t border-white/10 pt-5">
+                    <span className="jj-label mb-3 block text-[0.58rem] text-jj-gold">Service Inclusions</span>
+                    <ul className="grid grid-cols-1 gap-2 text-xs text-jj-muted sm:grid-cols-2">
                       {service.features.map((feature, fIndex) => (
                         <li key={fIndex} className="flex gap-2">
-                          <span className="text-gold-500 font-bold">•</span>
+                          <span className="font-bold text-jj-orange">•</span>
                           <span>{feature}</span>
                         </li>
                       ))}
@@ -66,9 +67,9 @@ const Services = () => {
             ))}
           </div>
 
-          <div className="bg-primary-50 rounded-2xl p-8 md:p-12 text-center flex flex-col items-center gap-6 max-w-3xl mx-auto border border-primary-100">
-            <h3 className="text-2xl font-bold text-primary-800">Ready to design a custom menu?</h3>
-            <p className="text-primary-800/70 font-sans text-sm max-w-lg">
+          <div className="jj-glass mx-auto flex max-w-3xl flex-col items-center gap-6 rounded-[2rem] p-8 text-center md:p-12">
+            <h3 className="font-display text-3xl text-white">Ready to design a custom menu?</h3>
+            <p className="max-w-lg text-sm leading-8 text-jj-muted">
               Let us know your guest size, dietary preferences, and event date, and we will formulate a personalized dining proposal.
             </p>
             <Link to="/request-quote">

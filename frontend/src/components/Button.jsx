@@ -9,23 +9,23 @@ const Button = ({
   onClick,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2';
+  const baseStyles = 'jj-label inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-semibold tracking-[0.18em] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-0';
   
   const variants = {
-    primary: 'bg-primary-500 hover:bg-primary-600 text-cream-50 focus:ring-primary-600 shadow-sm hover:shadow',
-    secondary: 'bg-gold-500 hover:bg-gold-600 text-primary-800 focus:ring-gold-600 shadow-sm hover:shadow',
-    outline: 'border border-primary-500 text-primary-500 hover:bg-primary-50 focus:ring-primary-500',
-    text: 'text-primary-600 hover:text-primary-700 hover:bg-cream-100 focus:ring-primary-500',
+    primary: 'bg-jj-orange text-black shadow-[0_0_20px_rgba(232,101,26,0.18)] hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(232,101,26,0.35)] focus:ring-jj-orange',
+    secondary: 'border border-white/80 bg-transparent text-white hover:bg-jj-orange hover:text-black hover:border-jj-orange focus:ring-jj-orange',
+    outline: 'border border-jj-orange/40 text-jj-orange hover:bg-jj-orange hover:text-black focus:ring-jj-orange',
+    text: 'bg-transparent px-0 py-0 text-jj-orange underline-offset-4 hover:underline focus:ring-jj-orange',
   };
 
   const sizes = {
-    sm: 'px-3 py-1.5 text-xs',
-    md: 'px-5 py-2.5 text-sm',
-    lg: 'px-6 py-3.5 text-base',
+    sm: 'px-4 py-2 text-[0.68rem]',
+    md: 'px-5 py-3 text-[0.74rem]',
+    lg: 'px-8 py-4 text-[0.78rem]',
   };
 
   const widthStyle = fullWidth ? 'w-full' : '';
-  const disabledStyle = disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer active:scale-98';
+  const disabledStyle = disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer active:scale-[0.98]';
 
   return (
     <button

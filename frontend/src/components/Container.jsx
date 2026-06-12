@@ -13,7 +13,7 @@ const Container = ({
 
   return (
     <div
-      className={`mx-auto px-4 sm:px-6 lg:px-8 w-full ${sizes[size]} ${className}`}
+      className={`mx-auto w-full px-4 sm:px-6 lg:px-8 ${sizes[size]} ${className}`}
       {...props}
     >
       {children}

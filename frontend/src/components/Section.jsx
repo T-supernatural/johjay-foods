@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 const Section = ({
   children,
   background = 'transparent',
@@ -8,27 +10,31 @@ const Section = ({
 }) => {
   const backgrounds = {
     transparent: 'bg-transparent',
-    white: 'bg-white',
-    cream: 'bg-cream-100',
-    primary: 'bg-primary-700 text-cream-50',
-    dark: 'bg-primary-800 text-cream-50',
+    white: 'bg-jj-surface text-white',
+    cream: 'bg-jj-card text-white',
+    primary: 'bg-jj-black text-white',
+    dark: 'bg-jj-surface text-white',
   };
 
   const spacings = {
     none: '',
-    sm: 'py-8 md:py-12',
+    sm: 'py-12 md:py-16',
     md: 'py-16 md:py-24',
-    lg: 'py-24 md:py-32',
+    lg: 'py-20 md:py-32',
   };
 
   return (
-    <section
+    <motion.section
       id={id}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.18 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
       className={`${backgrounds[background]} ${spacings[spacing]} ${className}`}
       {...props}
     >
       {children}
-    </section>
+    </motion.section>
   );
 };
 
