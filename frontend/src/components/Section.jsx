@@ -10,10 +10,10 @@ const Section = ({
 }) => {
   const backgrounds = {
     transparent: 'bg-transparent',
-    white: 'bg-jj-surface text-white',
-    cream: 'bg-jj-card text-white',
+    white: 'bg-jj-black text-white',
+    cream: 'bg-jj-surface text-white',
     primary: 'bg-jj-black text-white',
-    dark: 'bg-jj-surface text-white',
+    dark: 'bg-jj-black text-white',
   };
 
   const spacings = {

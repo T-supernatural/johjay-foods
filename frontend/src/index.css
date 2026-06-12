@@ -3,7 +3,7 @@
 
 @theme {
   --color-jj-black: #0a0a0a;
-  --color-jj-surface: #111111;
+  --color-jj-surface: #0f0f0f;
   --color-jj-card: #1a1a1a;
   --color-jj-orange: #e8651a;
   --color-jj-gold: #d4af6a;
@@ -15,12 +15,12 @@
   --color-primary-600: #d65b12;
   --color-primary-700: #f08a4e;
   --color-primary-800: #ffffff;
-  
+
   --color-gold-50: #2b2215;
   --color-gold-500: #d4af6a;
   --color-gold-600: #c99d50;
   --color-gold-700: #a87f34;
-  
+
   --color-cream-50: #141414;
   --color-cream-100: #1a1a1a;
   --color-cream-200: #242424;
@@ -29,15 +29,17 @@
   --font-heading: "Playfair Display", serif;
   --font-sans: "Inter", sans-serif;
   --font-label: "Montserrat", sans-serif;
-  
+
   --shadow-orange-glow: 0 0 0 1px rgba(232, 101, 26, 0.18), 0 20px 60px rgba(232, 101, 26, 0.12);
 }
 
 body {
   font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.7;
   background:
-    radial-gradient(circle at top center, rgba(232, 101, 26, 0.1), transparent 32%),
-    linear-gradient(180deg, #0a0a0a 0%, #111111 100%);
+    radial-gradient(ellipse at 30% 80%, rgba(232, 101, 26, 0.08) 0%, transparent 60%),
+    #0a0a0a;
   color: #ffffff;
   overflow-x: hidden;
 }
@@ -76,10 +78,10 @@ a {
 }
 
 .jj-glass {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(232, 101, 26, 0.15);
+  background: #141414;
+  border: 1px solid rgba(232, 101, 26, 0.16);
   backdrop-filter: blur(14px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
 .jj-card-highlight {
@@ -96,10 +98,10 @@ a {
 
 .jj-section-heading::after {
   content: '';
-  width: 60px;
+  width: 50px;
   height: 3px;
   border-radius: 999px;
-  background: linear-gradient(90deg, transparent, #e8651a, transparent);
+  background: #e8651a;
 }
 
 .jj-label {
@@ -117,7 +119,7 @@ a {
 }
 
 .jj-gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, #ffd8bd 30%, #e8651a 100%);
+  background: linear-gradient(135deg, #e8651a 0%, #d4af6a 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -180,4 +182,37 @@ a {
   height: 3px;
   background: #e8651a;
   border-radius: 999px;
+}
+
+.jj-photo {
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.group:hover .jj-photo,
+.jj-photo:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.jj-float {
+  animation: jj-float 4s ease-in-out infinite;
+}
+
+.jj-float-delay-1 {
+  animation-delay: 1.3s;
+}
+
+.jj-float-delay-2 {
+  animation-delay: 2.6s;
+}
+
+@keyframes jj-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
