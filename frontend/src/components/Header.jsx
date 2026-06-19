@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
+import { ChevronDown } from 'lucide-react'
 import { useAuth } from '../context/useAuth.js'
 import Button from './Button.jsx'
 
@@ -15,10 +16,17 @@ const navItems = [
 
 const Header = () => {
   const { currentUser, isAuthenticated, logout } = useAuth()
+  const location = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [avatarOpen, setAvatarOpen] = useState(false)
+  const [accountOpen, setAccountOpen] = useState(false)
   const avatarRef = useRef(null)
+  const accountRef = useRef(null)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16)
@@ -33,6 +41,9 @@ const Header = () => {
     const onClickOutside = (event) => {
       if (avatarRef.current && !avatarRef.current.contains(event.target)) {
         setAvatarOpen(false)
+      }
+      if (accountRef.current && !accountRef.current.contains(event.target)) {
+        setAccountOpen(false)
       }
     }
 
@@ -104,14 +115,26 @@ const Header = () => {
               )}
             </div>
           ) : (
-            <>
-              <Link to="/login" className="hidden text-sm font-medium text-white/80 hover:text-jj-orange sm:inline">
-                Login
-              </Link>
-              <Link to="/register" className="hidden sm:block">
-                <Button variant="secondary" size="sm">Register</Button>
-              </Link>
-            </>
+            <div className="relative group hidden sm:block" ref={accountRef}>
+              <button
+                type="button"
+                onClick={() => setAccountOpen(!accountOpen)}
+                className="flex items-center gap-1 text-white hover:text-jj-orange transition-colors font-label text-sm uppercase tracking-wide"
+                aria-label="Account menu"
+              >
+                Account
+                <ChevronDown className={`w-4 h-4 transition-transform ${accountOpen ? 'rotate-180' : 'group-hover:rotate-180'}`} />
+              </button>
+
+              <div className={`absolute right-0 top-full mt-2 w-48 bg-jj-card border border-jj-orange/20 rounded-xl shadow-xl transition-all duration-200 overflow-hidden z-50 ${accountOpen ? 'opacity-100 visible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible'}`}>
+                <Link to="/login" onClick={() => setAccountOpen(false)} className="block px-5 py-3 text-white hover:bg-jj-orange/10 hover:text-jj-orange transition-colors font-sans text-sm border-b border-white/5">
+                  Login
+                </Link>
+                <Link to="/register" onClick={() => setAccountOpen(false)} className="block px-5 py-3 text-white hover:bg-jj-orange/10 hover:text-jj-orange transition-colors font-sans text-sm">
+                  Register
+                </Link>
+              </div>
+            </div>
           )}
 
           <button
@@ -140,6 +163,19 @@ const Header = () => {
                 {index < navItems.length - 1 && <div className="mx-auto mt-3 h-px w-24 bg-jj-orange/25" />}
               </div>
             ))}
+
+            {!isAuthenticated && (
+              <>
+                <div className="mx-auto mt-3 h-px w-24 bg-jj-orange/25" />
+                <Link to="/login" onClick={() => setMobileOpen(false)} className="block py-3 font-display text-3xl tracking-wide text-white">
+                  Login
+                </Link>
+                <div className="mx-auto mt-3 h-px w-24 bg-jj-orange/25" />
+                <Link to="/register" onClick={() => setMobileOpen(false)} className="block py-3 font-display text-3xl tracking-wide text-white">
+                  Register
+                </Link>
+              </>
+            )}
 
             <Link to="/request-quote" onClick={() => setMobileOpen(false)} className="mt-8">
               <Button variant="primary" size="lg">Request Quote</Button>

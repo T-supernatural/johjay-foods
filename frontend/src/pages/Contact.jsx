@@ -9,7 +9,6 @@ import { ChefHat, MapPin, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { submitContactMessage } from '../api/contactService.js';
 import { getApiErrorMessage } from '../api/errorUtils.js';
-import PageHero from '../components/PageHero.jsx';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -54,25 +53,26 @@ const Contact = () => {
 
   return (
     <div className="flex flex-col w-full">
-      <PageHero
-        eyebrow="Contact"
-        title="Contact Us"
-        subtitle="Get in touch with us for general inquiries, career opportunities, or corporate partnerships."
-        breadcrumb={[{ label: 'Home' }, { label: 'Contact' }]}
-        backgroundImage="https://images.unsplash.com/photo-1574484284002-952d92456975?w=1600&q=60&fit=crop&auto=format"
-        backgroundAlt="Elegant catered event"
-      />
+      <section className="relative h-[280px] md:h-[380px] overflow-hidden bg-jj-black">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1600&q=60&fit=crop&auto=format"
+            alt="Elegant table setting"
+            loading="lazy"
+            className="h-full w-full object-cover object-center"
+          />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.75) 40%, rgba(10,10,10,0.95) 75%, rgba(10,10,10,1) 100%)' }} />
+        </div>
 
-      <div className="relative h-[200px] overflow-hidden border-y border-jj-orange/10">
-        <img
-          src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1400&q=70&fit=crop&auto=format"
-          alt="Food display"
-          loading="lazy"
-          className="h-full w-full object-cover object-[center_60%]"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.28)_0%,rgba(0,0,0,0.72)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(0,0,0,0.32)_0%,transparent_35%,transparent_65%,rgba(0,0,0,0.32)_100%)]" />
-      </div>
+        <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col items-center justify-center px-6 text-center text-white">
+          <span className="text-jj-orange font-label text-xs uppercase tracking-widest mb-3">CONTACT</span>
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight mb-4">Contact Us</h1>
+          <p className="max-w-3xl text-sm text-white/70 mb-4">
+            Get in touch with us for general inquiries, career opportunities, or corporate partnerships.
+          </p>
+          <p className="text-xs uppercase tracking-widest text-white/50">HOME / CONTACT</p>
+        </div>
+      </section>
 
       {/* Contact Form & Sidebar */}
       <Section background="white" spacing="lg">
@@ -174,6 +174,11 @@ const Contact = () => {
             </Card>
 
             <Card padding="md" className="group flex flex-col gap-4 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-jj-orange/35 hover:shadow-[0_20px_40px_rgba(232,101,26,0.15)]">
+              <img
+                src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=160&q=80&fit=crop&auto=format"
+                alt="Catering details"
+                className="h-20 w-20 rounded-2xl object-cover"
+              />
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-jj-orange/10 text-jj-orange">
                 <ChefHat size={20} />
               </div>
