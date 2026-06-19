@@ -206,3 +206,30 @@ CORS_ALLOWED_ORIGINS = os.environ.get(
     'http://localhost:5173,http://127.0.0.1:5173'
 ).split(',')
 CORS_ALLOW_CREDENTIALS = True
+
+
+# Email Configuration
+# Set EMAIL_BACKEND_MODE to 'console' for development (prints to terminal)
+# Set EMAIL_BACKEND_MODE to 'smtp' to send real emails via Gmail
+EMAIL_BACKEND_MODE = os.environ.get('EMAIL_BACKEND_MODE', 'console')
+
+if EMAIL_BACKEND_MODE == 'console':
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
+    EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+
+DEFAULT_FROM_EMAIL = os.environ.get(
+    'DEFAULT_FROM_EMAIL',
+    'Johjay Foods <noreply@johjayfoods.com>'
+)
+
+# Business owner email address for notifications
+BUSINESS_OWNER_EMAIL = os.environ.get('BUSINESS_OWNER_EMAIL', '')
+
+# Frontend URL for email links back to admin dashboard
+FRONTEND_URL = os.environ.get('FRONTEND_URL', 'http://localhost:5173')
