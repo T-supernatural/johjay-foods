@@ -101,6 +101,15 @@ const Header = () => {
                     <p className="text-xs text-jj-muted">Signed in as</p>
                     <p className="mt-1 text-sm font-medium text-white">{currentUser?.full_name || currentUser?.email}</p>
                   </div>
+                  {currentUser?.role === 'admin' && (
+                    <Link
+                      to="/admin"
+                      onClick={() => setAvatarOpen(false)}
+                      className="mt-3 block w-full rounded-full border border-white/10 bg-white/5 px-4 py-2 text-left text-sm text-white transition-colors hover:bg-white/10"
+                    >
+                      Admin Dashboard
+                    </Link>
+                  )}
                   <button
                     type="button"
                     onClick={() => {
