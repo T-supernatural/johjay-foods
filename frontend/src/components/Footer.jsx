@@ -63,7 +63,7 @@ const Footer = () => {
 
       <div className="border-t border-white/10 px-4 py-5 text-center text-xs text-jj-muted sm:px-6 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 md:flex-row md:items-center md:justify-between">
-          <p>Made with ❤️ in Nigeria</p>
+          <p>Johjay Foods</p>
           <p>© {new Date().getFullYear()} Johjay Foods. All rights reserved.</p>
         </div>
       </div>

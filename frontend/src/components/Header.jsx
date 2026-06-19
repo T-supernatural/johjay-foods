@@ -10,7 +10,7 @@ const navItems = [
   { to: '/gallery', label: 'Gallery' },
   { to: '/testimonials', label: 'Testimonials' },
   { to: '/contact', label: 'Contact' },
-  { to: '/request-quote', label: 'Request Quote' },
+  // { to: '/request-quote', label: 'Request Quote' },
 ]
 
 const Header = () => {
